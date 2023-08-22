@@ -147,9 +147,9 @@ def install():
 
     if not os.path.exists(bbox_path):
         os.makedirs(bbox_path)
+
     print(f"### ComfyUI-Impact-Pack: Updating subpack")
-    if os.path.exists(subpack_install_script):
-        subprocess.run(pip_install + ['-r', 'requirements.txt'], cwd=subpack_path)
+    subprocess.run(pip_install + ['-r', 'requirements.txt'], cwd=subpack_path)
 
     if not os.path.exists(onnx_path):
         print(f"### ComfyUI-Impact-Pack: onnx model directory created ({onnx_path})")
