@@ -147,24 +147,8 @@ def install():
 
     if not os.path.exists(bbox_path):
         os.makedirs(bbox_path)
-
-    if not impact.config.get_config()['mmdet_skip']:
-        if not os.path.exists(os.path.join(bbox_path, "mmdet_anime-face_yolov3.pth")):
-            download_url("https://huggingface.co/dustysys/ddetailer/resolve/main/mmdet/bbox/mmdet_anime-face_yolov3.pth", bbox_path)
-
-        if not os.path.exists(os.path.join(bbox_path, "mmdet_anime-face_yolov3.py")):
-            download_url("https://raw.githubusercontent.com/Bing-su/dddetailer/master/config/mmdet_anime-face_yolov3.py", bbox_path)
-
-    if not os.path.exists(os.path.join(sam_path, "sam_vit_b_01ec64.pth")):
-        download_url("https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth", sam_path)
-
-    subpack_install_script = os.path.join(subpack_path, "install.py")
-
     print(f"### ComfyUI-Impact-Pack: Updating subpack")
-    ensure_subpack()
-
     if os.path.exists(subpack_install_script):
-        subprocess.run([sys.executable, 'install.py'], cwd=subpack_path)
         subprocess.run(pip_install + ['-r', 'requirements.txt'], cwd=subpack_path)
 
     if not os.path.exists(onnx_path):
